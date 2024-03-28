@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Zip File</title>
+    <style>
+        body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	font-family: Arial, sans-serif;
+}
+
+form {
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+input[type="file"] {
+	display: block;
+	margin: 20px auto;
+	border: 2px dashed #ccc;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+input[type="submit"] {
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+	background-color: #3e8e41;
+}
+
+#drop-zone {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border: 2px dashed #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.hidden {
+	display: none;
+}
+    </style>
+</head>
+<body>
+    <h1>Upload Zip File</h1>
+    <form action="/upload/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="drop-zone">
+            <p>Drop your zip file here or click to browse</p>
+            <input type="file" id="file-input" name="zip_file" accept=".zip" required>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="result-message" class="hidden">
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
